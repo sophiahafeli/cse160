@@ -1,0 +1,71 @@
+<!--Sophia Scheler sscheler@ucsc.edu https://html.form.guide/html-form/html-checkbox-events/-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blocky animal</title>
+  </head> 
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+      Please use a browser that supports "canvas"
+    </canvas>
+
+    <p id="msfsp"> ms and fsp stats </p>
+
+    <label>
+      <p></p> Manual Mouse View:<input type="checkbox" id="manualview" onchange="togglemanualview(this.checked)"></p>
+  </label>
+  <script>
+      function togglemanualview(checked) {
+          manualview = checked;
+          if (!checked) {
+              document.onmousemove = null;
+          }
+      }
+  </script>
+    
+    <h3>Click to animate:</h3>
+    <button type="button" id="startanimate">START</button>
+    <button type="button" id="stopanimate">STOP</button> 
+    <h3>Adjust single features:</h3>
+    <p>Global Rotation<input type="range" min="-360" max="360" value="0" class="slider" id="gAnimalGlobalRotation"></b>
+    </p> Body <input type="range" min="0" max="15" value="0" class="slider" id="body"></b>
+    Head tilt <input type="range" min="-30" max="30" value="0" class="slider" id="headtilt"></b>
+    Left foot <input type="range" min="-5" max="5" value="0" class="slider" id="feet"></b>
+    <p>Left arm <input type="range" min="-60" max="145" value="0" class="slider" id="leftArm"></b>
+    </b>Left Leg <input type="range" min="-30" max="30" value="0" class="slider" id="leftleg"></b>
+    </b>Lower Left Leg <input type="range" min="-20" max="30" value="0" class="slider" id="leftleg2"></b>
+  <p>Right arm <input type="range" min="-60" max="145" value="0" class="slider" id="rightArm"></b>
+
+
+</b>Three joint movement<input type="range" min="-30" max="30" value="0" class="slider" id="joint"></b>
+<h3> Shift Click Animation (Make duolingo speak!):</h3>
+
+Beak <input type="range" min="0" max="4" value="0" class="slider" id="beaktilt"></b>
+
+
+
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="Point.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Cube.js"></script>
+    <script src="lib/cuon-matrix-cse160.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="BlockyAnimal.js"></script>
+
+    <b></b>
+    <h4>A few notes: </h4>
+    For my blocky animal I created the character from the Roblox mini game Dress to Impress. The animation is
+    this character performing 'pose 28' which is an extremely popular pose turned meme, especially recognizable for a younger 
+    audience. The character leans back with their arms behind their back and a large stance with movement in her back, 
+    connecting sholders, arms, hips, quads, calves, (feet for original) as well as head and neck for the 2 and 3 moving connection requirements. 
+    This reqirement can be demonstrated with three joint movement on the first or second animation using the slider.
+    For my shift click animation I made the Duolingo owl on theme with the game, as if it was a dress up theme and it
+    performs a flying animation with multiple spherical eyes and a beak which moves to speak. Thanks for viewing! I cited my resources 
+    throughout the code such as youtube, past labs and any sites for review.
+    Sophia Scheler sscheler 1860067
+    <b></b>
+  </body>
+</html>
