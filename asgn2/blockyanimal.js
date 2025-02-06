@@ -151,7 +151,7 @@ function addActionsForHtmlUI(){
 }
 
 //with a performance indicator on your webpage. from youtube vids
-function getmsandfsp(text, htmlID){
+function thefsp(text, htmlID){
   var htmlElm = document.getElementById(htmlID);
   if (!htmlElm){
     console.log("Failed to get " + htmlID + " from HTML");
@@ -716,5 +716,5 @@ function renderScene(){
 //from youtube vids
     var duration = performance.now() - startTime;
     var fps = 1000/duration 
-    getmsandfsp("ms: "+Math.floor(duration)+"\nfps: "+Math.floor(fps),"msfsp");
+    thefsp("fps: "+Math.floor(fps),"thefsp");
   }
