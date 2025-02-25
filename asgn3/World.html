@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Blocky World (hard)</title>
+</head>
+<body onload="main()">
+  <canvas id="webgl" width="800" height="800">
+    Please use a browser that supports "canvas".
+  </canvas>
+  <br>
+  <p id="numdot">XXX</p>
+  <p>Find the diamonds before they find you! (scary)</p>
+
+  <p> 
+    Story: You Have spawned into an adventure mode minecraft world and you are very poor. 
+    SO poor in fact that you are being punished, stuck in the nether on a small island in the middle of a 
+    lava pool left to suffer forever ebcause your society is classist. Your only hope is to find all the diamonds to 
+    recover your generational wealth left behind on your island by your ancestors in order to flex on and restore status
+    among your forementioned capitalist peers. Then you will finally be able to escape this deep pit of hell full of torture, sadness, shame 
+    as well as dread/despair and join a new one that feels less pit but still cold and lonely. If you want to feel even worse, click on the 
+    button to hear them laugh at you and look up as they judge you with such disdain in their soulless eyes =D. 
+    Feel free to add and delete the door as you please. It will not be the thing that saves you. I, as the metaphorical god of this world am also miserable.
+    You will soon realize villagers do not even like diamonds and your quest, while perilous, was fruitless and meaningless. 
+  </p>
+  <button id="playSoundButton">They are laughing at you</button>
+  <audio id="Villager" src="VillagerLaugh.mp3"></audio>
+  
+
+  <p>
+
+    Camera <input type="range", min="-180" max="180" value="5" class="slider" id="angleSlide"><br><br>
+    <p>
+    Controls: <p>
+      A - Walk Left <br>
+      Q - Scan Left <br>
+      D - Walk Righ <br>
+      E - Scan Right <br>
+      W - Walk Forward <br>
+      Z - Float Up <br>
+      S - Walk Back <br>
+      X - Float Lower <br>
+      C - Open the Doors <br>
+  
+  <script src="Point.js"></script>
+  <script src="Triangle.js"></script>
+  <script src="Cube.js"></script>
+  <script src="Camera.js"></script>
+  <script src="lib/cuon-matrix-cse160.js"></script>
+  <script src="lib/cuon-utils.js"></script>
+  <script src="World.js"></script>
+
+</body>
+</html>
