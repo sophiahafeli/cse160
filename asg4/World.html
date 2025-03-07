@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lighting</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl"width="500" height="500">
+    Please use a browser that supports "canvas"
+    </canvas>
+	<br>
+  <br><br>
+  <b>Camera Position:</b><br><br> <input type="range", min="-180" max="180" value="0" class="slider" id="angSlide"> &nbsp;
+  <p>
+  <b>Animation:</b> &nbsp;&nbsp;
+  <button type="button" id="aOn">On</button>
+  <button type="button" id="aOff">Off</button> &nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Normal:</b>  &nbsp;&nbsp;
+  <button type="button" id="nOn">On</button>
+  <button type="button" id="nOff">Off</button> &nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Light:</b> &nbsp;&nbsp;
+  <button type="button" id="lOn">Light</button>
+  <button type="button" id="lOff">Spotlight</button>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+  <br><br>
+  <b>Rotatation:</b> &nbsp;&nbsp;
+  <button type="button" id="ROn">On</button>
+  <button type="button" id="ROff">Off</button>
+  <br><br>
+
+  <b>Light Position:</b> <br><br>
+  &nbsp;&nbsp;x <input type="range", min="-200" max="200" value="0" class="slider" id="lSlideX">&nbsp 
+  &nbsp;&nbsp;y <input type="range", min="-100" max="300" value="100" class="slider" id="lSlideY">&nbsp 
+  &nbsp;&nbsp;z <input type="range", min="-500" max="500" value="-200" class="slider" id="lSlideZ">&nbsp 
+  <p>
+  
+  <b>Colors:</b> <br><br>
+  Red <input type="range" min ="0" max ="100" value ="0" class ="slider" id ="lRed">
+  &nbsp;Green <input type="range" min ="0" max ="100" value ="0" class ="slider" id ="lGreen">
+  &nbsp;Blue <input type="range" min ="0" max ="100" value ="0" class ="slider" id ="lBlue">
+  <br><br>
+
+  <h3> Since my character is a Dress to Impress character with the theme Duolingo, I tried to stick to theme and have the Spotlight
+    directly in front of the character as if they were currently being judged. Press the light buttons to turn off the light and turn on the spotlight/vice versa 
+    (normal and color sliders work for spotlight as well). The sphere and cube are minecraft textured. In order to use the x y and z sliders, turn rotation off. You are free to walk around and 
+    explore with the same controls as the last lab (qweasdzx). I realize this is so late. Please, please, please, please be very nice to me (especially due to duolingo being revived and that I am struggling to find a will or a way).
+    Warmly and with undying appreciation, Sophia. 
+  </h3>
+
+	<script src="lib/webgl-utils.js"></script>
+	<script src="lib/webgl-debug.js"></script>
+	<script src="lib/cuon-utils.js"></script>
+	<script src="lib/cuon-matrix-cse160.js"></script>
+	<script src="Cube.js"></script>
+  <script src="circle.js"></script>
+  <script src="Sphere.js"></script>
+  <script src="Camera.js"></script>
+  <script src="World.js"></script>
+
+    </body>
+</html>
