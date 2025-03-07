@@ -33,6 +33,7 @@ var VSHADER_SOURCE = `
   uniform vec3 u_lightColor;
   uniform vec3 u_spotlightPos;
   uniform vec3 u_spotlightDir;
+  uniform bool u_toggleL;
   
   void main() {
   
@@ -68,23 +69,26 @@ var VSHADER_SOURCE = `
     
     vec3 diffuse = vec3(1.0,1.0,0.9) * vec3(gl_FragColor) * nDotL *0.8;
     vec3 ambient = (vec3(gl_FragColor) + u_lightColor) * 0.4;
-    if (u_lightOn) {
-        gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
-    }
-    else {
-          vec3 spotlightVector = normalize(u_spotlightPos - vec3(v_VertPos));
-          vec3 L = normalize(spotlightVector);
-          vec3 N = normalize(v_Normal);
-          float nDotL = max(dot(N, L), 0.0);
-          vec3 R = reflect(-L, N);
-          vec3 E = normalize(u_cameraPos - vec3(v_VertPos));
-          float specular = pow(max(dot(E, R), 0.0), 10.0) * 0.5;
-          vec3 diffuse = vec3(gl_FragColor) * nDotL * u_lightColor;
-          vec3 ambient = vec3(gl_FragColor) * 0.3;
-          gl_FragColor = vec4(specular+diffuse+ambient, gl_FragColor.a);
-          float spotEffect = dot(spotlightVector, normalize(u_spotlightDir));
-          gl_FragColor.rgb += spotEffect * 0.8;
-    }
+	if (u_toggleL) {
+
+		if (u_lightOn) {
+			gl_FragColor = vec4(specular+diffuse+ambient, 1.0);
+		}
+		else {
+			vec3 spotlightVector = normalize(u_spotlightPos - vec3(v_VertPos));
+			vec3 L = normalize(spotlightVector);
+			vec3 N = normalize(v_Normal);
+			float nDotL = max(dot(N, L), 0.0);
+			vec3 R = reflect(-L, N);
+			vec3 E = normalize(u_cameraPos - vec3(v_VertPos));
+			float specular = pow(max(dot(E, R), 0.0), 10.0) * 0.5;
+			vec3 diffuse = vec3(gl_FragColor) * nDotL * u_lightColor;
+			vec3 ambient = vec3(gl_FragColor) * 0.3;
+			gl_FragColor = vec4(specular+diffuse+ambient, gl_FragColor.a);
+			float spotEffect = dot(spotlightVector, normalize(u_spotlightDir));
+			gl_FragColor.rgb += spotEffect * 0.8;
+		}
+	}
 }`
 let a_Normal;
 let u_lightPos;
@@ -97,6 +101,7 @@ let u_lightColor;
 let u_spotlightPos;
 let u_spotlightDir;
 let u_lightOn;
+let u_toggleL;
 let canvas;
 let gl;
 let u_cameraPos
@@ -127,6 +132,7 @@ let g_lightColor = [0,0,0]
 let lRot = true;
 let g_spotlightPos =  [0,1.4,-2]
 let g_spotlightDir = [0,1,0]
+let g_toggleL = true;
 var camera = new Camera();
 
 function setupWebGl() {
@@ -177,6 +183,11 @@ function connectVariablesToGLSL() {
 	u_lightOn = gl.getUniformLocation(gl.program, 'u_lightOn');
 	if (!u_lightOn) {
 		console.log('Failed to get the storage location of u_lightOn');
+		return;
+	}
+	u_toggleL = gl.getUniformLocation(gl.program, 'u_toggleL');
+	if (!u_toggleL) {
+		console.log('Failed to get the storage location of u_toggleL');
 		return;
 	}
 	u_Sampler0 = gl.getUniformLocation(gl.program, 'u_Sampler0');
@@ -258,7 +269,9 @@ function addActionsForHtmlUI() {
 	document.getElementById('ROn').onclick = function() {lRot = true;};
 	document.getElementById('ROff').onclick = function() {lRot = false;};
 	document.getElementById('lOn').onclick = function() {g_lightOn = true; };
+	document.getElementById('TOn').onclick = function() {g_toggleL = true; };
 	document.getElementById('lOff').onclick = function() {g_lightOn = false; };
+	document.getElementById('TOff').onclick = function() {g_toggleL = false; };
 	document.getElementById('aOn').onclick = function() {g_animation = true; };
 	document.getElementById('aOff').onclick = function() {g_animation = false; };
 	document.getElementById('nOn').onclick = function() {g_normalOn = true; };
@@ -406,6 +419,7 @@ function renderAllShapes() {
 	gl.uniform3f(u_lightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
 	gl.uniform3f(u_cameraPos, camera.eye.x, camera.eye.y, camera.eye.z);
 	gl.uniform1i(u_lightOn, g_lightOn);
+	gl.uniform1i(u_toggleL, g_toggleL);
 	gl.uniform3f(u_spotlightDir, g_spotlightDir[0], g_spotlightDir[1], g_spotlightDir[2]);
 	gl.uniform3f(u_spotlightPos, g_spotlightPos[0], g_spotlightPos[1], g_spotlightPos[2]);
 	gl.uniform3f(u_lightColor, g_lightColor[0], g_lightColor[1], g_lightColor[2]);
