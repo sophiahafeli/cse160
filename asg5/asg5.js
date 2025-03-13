@@ -35,6 +35,35 @@ DeathSTar.position.set(5, 7, -30);
 DeathSTar.rotation.y =-9; 
 scene.add(DeathSTar);
 
+//tattoine+2moons
+const loader2 = new THREE.TextureLoader();
+const tatoo = new THREE.SphereGeometry(2, 32, 32);
+const ttext1 = loader.load('TATOOINE.jpeg');
+const tDM = new THREE.MeshBasicMaterial({ map: ttext1 });
+let tatooine = new THREE.Mesh(tatoo, tDM);
+tatooine.position.set(-15, 2, -30);
+scene.add(tatooine);
+
+const moonPivot = new THREE.Object3D();
+scene.add(moonPivot);
+moonPivot.position.copy(tatooine.position); 
+
+const moonPivot2 = new THREE.Object3D();
+scene.add(moonPivot2);
+moonPivot2.position.copy(tatooine.position); 
+
+const moon = new THREE.SphereGeometry(0.5, 32, 32);
+const moonMaterial1 = new THREE.MeshBasicMaterial({ color: "rgba(219, 225, 95, 0.98)" });
+const moonMesh1 = new THREE.Mesh(moon, moonMaterial1);
+moonMesh1.position.set(3, 1.4, 0);
+moonPivot2.add(moonMesh1);
+
+const moon22 = new THREE.SphereGeometry(0.35, 32, 32);
+const moonMaterial2 = new THREE.MeshBasicMaterial({ color: "rgba(225, 186, 95, 0.98)" });
+const moonMesh2 = new THREE.Mesh(moon22, moonMaterial2);
+moonMesh2.position.set(2.5, 1.7, 0); 
+moonPivot.add(moonMesh2);
+
 //machine
 const mach = new THREE.SphereGeometry(0.5, 10, 10);
 const mach1 = new THREE.MeshBasicMaterial({color: "rgba(57, 100, 72, 0.15)"});
@@ -428,6 +457,12 @@ objLoader3.load('resources/models/jjbink/Darth Jar Jar Low Poly Mesh.obj', funct
         if (jjb) {
             jjb.position.x = -6 + Math.sin(time/2) * (Math.PI / 1.4);
             jjb.rotation.z = Math.sin(time/2) * (Math.PI / 2);
+        }
+        if (moonPivot) {
+            moonPivot.rotation.y += 0.006;
+        }
+        if (moonPivot2) {
+            moonPivot2.rotation.y += 0.01;
         }
         requestAnimationFrame(rendering);
         controls.update();
